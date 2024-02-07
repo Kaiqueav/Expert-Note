@@ -1,5 +1,6 @@
 import Logo from './assets/Logo.svg';
-
+import { CardNew } from './components/cardNew/CardNew.tsx';
+import { CardNote } from './components/cardNotes/CardNote.tsx';
 function App() {
 
   return (
@@ -13,7 +14,11 @@ function App() {
           className='w-full bg-transparent text-3xl font-semibold tracking-tighter outline-none placeholder:text-slate-500'
           />
       </form>
-
+      <div className='grid grid-cols-3 gap-6 auto-rows-[250px] '>
+         <CardNew/>
+         <CardNote/> 
+      </div>
+     
 
     </div>
   )
