@@ -1,9 +1,11 @@
- 
+import Logo from './assets/Logo.svg';
+
 function App() {
 
   return (
     <>
-      <h1>ola nlw</h1> 
+     <img src={Logo}  /> 
+     
     </>
   )
 }
