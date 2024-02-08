@@ -1,6 +1,12 @@
 import Logo from './assets/Logo.svg';
 import { CardNew } from './components/cardNew/CardNew.tsx';
 import { CardNote } from './components/cardNotes/CardNote.tsx';
+
+const note = {
+  date: new Date(),
+  content: 'Hello world'
+}
+
 function App() {
 
   return (
@@ -16,7 +22,7 @@ function App() {
       </form>
       <div className='grid grid-cols-3 gap-6 auto-rows-[250px] '>
          <CardNew/>
-         <CardNote/> 
+         <CardNote  note={note} /> 
       </div>
      
 
