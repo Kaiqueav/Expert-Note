@@ -12,9 +12,6 @@ export const CardNew = ({ onNoteCreated }:CardNewProps) => {
     const [shouldShowOnBoarding, setShouldShowOnBoarding] = useState(true);
     const [content, setContent] = useState('');
 
-
-
-
     const handleStartEdition = () =>{
         setShouldShowOnBoarding(false);
     }
@@ -34,6 +31,7 @@ export const CardNew = ({ onNoteCreated }:CardNewProps) => {
         event.preventDefault();
     
         onNoteCreated(content)
+        setContent('')
 
         toast.success("Nota Criada com sucesso!")
 
@@ -48,7 +46,6 @@ export const CardNew = ({ onNoteCreated }:CardNewProps) => {
                     Grave uma nota em audio que sera convertida em texto  automaticamente
                 </p>
             </Dialog.Trigger>
-
 
             <Dialog.Portal>
                 <Dialog.Overlay className="inset-0 fixed bg-black/50" />
@@ -71,7 +68,8 @@ export const CardNew = ({ onNoteCreated }:CardNewProps) => {
                             <textarea
                              className="text-sm leading-6 text-slate-400 bg-transparent resize-none flex-1 outline-none" 
                              onChange={handleContentChanged}
-                             autoFocus/>
+                             autoFocus
+                             value={content}/>
                          )}
                         
                     </div>
