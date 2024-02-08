@@ -15,7 +15,7 @@ export const CardNote = ({ note }: NoteCardsProps) => {
     <Dialog.Root>
       <Dialog.Trigger className="rounded-md text-left flex flex-col bg-slate-800 p-5gap-3 overflow-hidden relative outline-none hover:ring-2">
 
-        <span className="text-sm font-medium text-slate-300"> {note.date.toISOString()}</span>
+        <span className="text-sm font-medium text-slate-300"> {formatDistanceToNow(note.date, { locale: ptBR, addSuffix: true})}</span>
 
         <p className="text-sm leading-6 text-slate-400"> {note.content} </p>
 
