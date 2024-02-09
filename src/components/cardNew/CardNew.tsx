@@ -6,6 +6,7 @@ import { toast } from 'sonner'
 interface CardNewProps {
     onNoteCreated: (content: string) => void
 }
+let speechRecognition: SpeechRecognition | null = null
 
 export const CardNew = ({ onNoteCreated }: CardNewProps) => {
     // estados
@@ -56,7 +57,9 @@ export const CardNew = ({ onNoteCreated }: CardNewProps) => {
         setShouldShowOnBoarding(false);
         const SpeechRecognitionAPI = window.SpeechRecognition  || window.webkitSpeechRecognition;
 
-        const speechRecognition = new SpeechRecognitionAPI();
+        speechRecognition = new SpeechRecognitionAPI();
+
+
         speechRecognition.lang = 'pt-br';
         // so vai parar quando falar 'pare'
         speechRecognition.continuous = true;
@@ -76,12 +79,17 @@ export const CardNew = ({ onNoteCreated }: CardNewProps) => {
         speechRecognition.onerror = (event) => {
             console.error(event);
         }
-        
+
         speechRecognition.start();
     }
 
     const handleStopRecording = () => {
         setRecording(false);
+
+        if(speechRecognition !== null){
+            speechRecognition.stop();
+        }
+
     }   
 
 
