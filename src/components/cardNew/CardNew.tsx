@@ -32,7 +32,7 @@ export const CardNew = ({ onNoteCreated }:CardNewProps) => {
     
         onNoteCreated(content)
         setContent('')
-
+        setShouldShowOnBoarding(true)
         toast.success("Nota Criada com sucesso!")
 
     }
