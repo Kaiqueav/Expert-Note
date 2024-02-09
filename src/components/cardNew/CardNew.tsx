@@ -39,6 +39,9 @@ export const CardNew = ({ onNoteCreated }: CardNewProps) => {
     const handleStartRecording = () => {
         setRecording(true);
     }
+    const handleStopRecording = () => {
+        setRecording(false);
+    }   
 
 
     return (
@@ -53,7 +56,7 @@ export const CardNew = ({ onNoteCreated }: CardNewProps) => {
             <Dialog.Portal>
                 <Dialog.Overlay className="inset-0 fixed bg-black/50" />
                 <Dialog.Content className="fixed rounded-md overflow-hidden left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 max-w-[640px] w-full bg-slate-700 outline-none flex flex-col">
-                    <form onSubmit={handleSaveNote} className="flex-1 flex flex-col">
+                    <form  className="flex-1 flex flex-col">
                         <Dialog.Close className="absolute right-0 top-0 bg-slate-800 p-1.5 text-slate-400 hover:text-slate-100">
                             <X className="size-5" />
                         </Dialog.Close>
@@ -61,7 +64,8 @@ export const CardNew = ({ onNoteCreated }: CardNewProps) => {
                             <span className="text-sm font-medium text-slate-300">  </span>
                             {shouldShowOnBoarding ? (
                                 <p className="text-sm leading-6 text-slate-400">
-                                    Comece <button className="font-medium text-lime-400 hover:underline" type="button" onClick={handleStartRecording}> gravando uma nota  </button> em audio <button className="font-medium text-lime-400 hover:underline" type="button" onClick={handleStartEdition} >ou se preferir ultilize apenas texto</button>
+                                    Comece <button className="font-medium text-lime-400 hover:underline" type="button" onClick={handleStartRecording}> gravando uma nota  </button> em audio <button className="font-medium text-lime-400 hover:underline" type="button" 
+                                    onClick={handleStartEdition} >ou se preferir ultilize apenas texto</button>
                                 </p>
                             ) : (
                                 <textarea
@@ -71,12 +75,17 @@ export const CardNew = ({ onNoteCreated }: CardNewProps) => {
                                     value={content} />
                             )}
                         </div>
-                        {recording ? (<button type="submit" className="w-full font-medium bg-slate-900 py-4 text-center text-sm outline-none text-white hover:bg-lime-500"
+
+                        {recording ? (
+                        <button type="button" onClick={handleStopRecording}
+                         className="w-full flex items-center justify-center gap-2 font-medium bg-slate-900 py-4 text-center text-sm outline-none text-white hover:bg-lime-500"
                         >
+                        <div className="size-3 rounded-full bg-red-500 animate-pulse"  />
                             Gravando! ( clique para interromper)
                         </button>
                         ) : (
-                            <button type="submit" className="w-full font-medium bg-lime-400 py-4 text-center text-sm outline-none text-lime-950 hover:bg-lime-500"
+                            <button  onClick={handleSaveNote} type="submit"
+                             className="w-full font-medium bg-lime-400 py-4 text-center text-sm outline-none text-lime-950 hover:bg-lime-500"
                             >
                                 Salvar Nota?
                             </button>
