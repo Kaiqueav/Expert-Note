@@ -8,14 +8,16 @@ interface CardNewProps {
 }
 
 export const CardNew = ({ onNoteCreated }: CardNewProps) => {
-
+    // estados
     const [shouldShowOnBoarding, setShouldShowOnBoarding] = useState(true);
     const [content, setContent] = useState('');
     const [recording, setRecording] = useState(false);
+
+    // função para inserir texto
     const handleStartEdition = () => {
         setShouldShowOnBoarding(false);
     }
-
+    // função para pegar o que é digitado no formulario
     function handleContentChanged(event: ChangeEvent<HTMLTextAreaElement>) {
 
         setContent(event.target.value);
@@ -25,8 +27,14 @@ export const CardNew = ({ onNoteCreated }: CardNewProps) => {
         }
     }
 
-
+    // função para salvar as notas
     const handleSaveNote = (event: FormEvent) => {
+    // verificando se a nota esta preenchida, para que possa ser criada
+        if(content ===''){
+            return
+        }
+
+        // criando nota
         event.preventDefault();
 
         onNoteCreated(content)
@@ -35,10 +43,43 @@ export const CardNew = ({ onNoteCreated }: CardNewProps) => {
         toast.success("Nota Criada com sucesso!")
 
     }
-
+    // função para inicar gravação de audio!
     const handleStartRecording = () => {
+        // verificando se o navgador suporta a API
+        const isSpeechApiAvailable ='SpeechRecognition' in window || "webkitSpeechRecognition" in window;
+
+        if(!isSpeechApiAvailable){
+            alert("infelizmente seu navagador não  suporta essa funcionalidade")
+            return;
+        }
         setRecording(true);
+        setShouldShowOnBoarding(false);
+        const SpeechRecognitionAPI = window.SpeechRecognition  || window.webkitSpeechRecognition;
+
+        const speechRecognition = new SpeechRecognitionAPI();
+        speechRecognition.lang = 'pt-br';
+        // so vai parar quando falar 'pare'
+        speechRecognition.continuous = true;
+        // se não entender a api vai encontrar uma plavra parecida
+        speechRecognition.maxAlternatives = 1;
+        // escreve enquanto voce fala
+        speechRecognition.interimResults =true;
+
+
+        speechRecognition.onresult = (event) =>{
+           const transcption = Array.from(event.results).reduce((text, result) => {
+            return text.concat(result[0].transcript)
+           },'')
+
+           setContent(transcption)
+        }   
+        speechRecognition.onerror = (event) => {
+            console.error(event);
+        }
+        
+        speechRecognition.start();
     }
+
     const handleStopRecording = () => {
         setRecording(false);
     }   
