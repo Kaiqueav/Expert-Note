@@ -10,9 +10,10 @@ interface Note {
 
 }
 
-
 function App() {
-  const [search, setSearch] = ('')
+  // estados
+
+  const [search, setSearch] = useState(''); 
   const [notes, setNotes] = useState<Note[]>(() => {
     const notesOnStorage = localStorage.getItem("notes");
 
@@ -23,18 +24,17 @@ function App() {
     return [];
   });
 
-
+// função para criar nota
   function onNoteCreated(content: string) {
 
     const newNote = {
       id: crypto.randomUUID(),
       date: new Date(),
       content
-    }
-    const notesArray = [newNote, ...notes]
+    };
+    const notesArray = [newNote, ...notes];
     setNotes(notesArray);
-
-    localStorage.setItem('notes', JSON.stringify(notesArray))
+    localStorage.setItem('notes', JSON.stringify(notesArray));
   }
 
   function handleSearch(event: ChangeEvent<HTMLInputElement>) {
@@ -45,7 +45,7 @@ function App() {
 
   const filterNotes = search !== '' 
   ? notes.filter(note => note.content.includes(search))
-  : notes
+  : notes;
 
   return (
     <div className='mx-auto max-w-6xl my-12 space-y-6'>
