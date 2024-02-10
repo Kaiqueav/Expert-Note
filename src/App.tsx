@@ -42,7 +42,15 @@ function App() {
 
     setSearch(query);
   }
+  function onDeleteNote(id: string){
+    const notesArray = notes.filter( note => {
+      return  note.id !== id
+    });
+    setNotes(notesArray)
 
+    localStorage.setItem('notes', JSON.stringify(notesArray));
+  }
+// função para pesquisar as notas
   const filterNotes = search !== '' 
   ? notes.filter(note => note.content.includes(search))
   : notes;
@@ -61,7 +69,7 @@ function App() {
       </form>
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[250px] '>
         <CardNew onNoteCreated={onNoteCreated} />
-        {filterNotes.map(note => { return <CardNote key={note.id} note={note} /> })}
+        {filterNotes.map(note => { return <CardNote key={note.id} note={note} onDeleteNote={onDeleteNote} /> })}
 
       </div>
 

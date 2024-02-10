@@ -4,13 +4,15 @@ import { ptBR } from "date-fns/locale";
 import { X } from "lucide-react";
 interface NoteCardsProps {
   note: {
+    id: string
     date: Date,
     content: string
   }
+  onDeleteNote: (id:string) => void
 }
 
 
-export const CardNote = ({ note }: NoteCardsProps) => {
+export const CardNote = ({ note, onDeleteNote }: NoteCardsProps) => {
   return (
     <Dialog.Root>
       <Dialog.Trigger className="rounded-md text-left flex flex-col bg-slate-800 p-5gap-3 overflow-hidden relative outline-none hover:ring-2">
@@ -33,7 +35,7 @@ export const CardNote = ({ note }: NoteCardsProps) => {
             <p className="text-sm leading-6 text-slate-400"> {note.content} </p>
           </div>
 
-          <button type="button" className="w-full font-medium bg-slate-800 py-4 text-center text-sm outline-none text-slate-300 group" >
+          <button type="button" className="w-full font-medium bg-slate-800 py-4 text-center text-sm outline-none text-slate-300 group" onClick={()=> onDeleteNote(note.id)} >
             Deseja <span className="text-red-400 group-hover:underline">Apagar essa Nota</span>?
           </button>
 
