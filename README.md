@@ -1,30 +1,52 @@
-# React + TypeScript + Vite
+ [TYPESCRIPT__BADGE]: https://img.shields.io/badge/typescript-D4FAFF?style=for-the-badge&logo=typescript
+ [REACT__BADGE]: https://img.shields.io/badge/React-005CFE?style=for-the-badge&logo=react
+[TAILWIND_BADGE]: https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h1 align="center" style="font-weight: bold;">Project name 💻</h1>
 
-Currently, two official plugins are available:
+<p align="center">
+ <a href="#tech">Tecnologias</a> • 
+ <a href="#started">Vamos começar</a> • 
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<p align="center">
+    <b> Uma lista de notas que podem ser gravadas por audios</b>
+</p>
 
-## Expanding the ESLint configuration
+<p align="center">
+     <a href="https://expert-note-dusky.vercel.app/">📱 Visite esse projeto</a>
+</p>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+<h2 id="technologies">💻 Technologies</h2>
+
+  ![react][REACT__BADGE] <br>
+  ![typescript][TYPESCRIPT__BADGE]<br>
+  ![tailwind][TAILWIND_BADGE]
+
+<h2 id="started">🚀 Getting started</h2>
+Clone esse repositorio para que possa rodar o projeot localmente
+<h3>Pre-requisitos</h3>
+
+  voce vai precisar das seguintes tecnolgias para iniciar o projeto localmente
+
+- [NodeJS](https://github.com/)
+- [Git 2](https://github.com)
+
+<h3>Clonagem</h3>
+
+como clonar
+
+```bash
+git clone URL do projeto
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+<h3>Starting</h3>
+
+How to start your project
+
+```bash
+cd nome do projeto
+npm run dev
+```
